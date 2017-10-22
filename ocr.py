@@ -22,8 +22,8 @@ def get_dset(data):
     return (X, Y)
 
 
-def model(layer_dims, learning_rate=0.3, mini_batch_size=64, beta1=0.9, beta2=0.999,
-          epsilon=1e-8, num_epochs=400, keep_prob=0.80, print_cost=True):
+def model(layer_dims, learning_rate=2.0, mini_batch_size=64, beta1=0.9, beta2=0.999,
+          epsilon=1e-8, num_epochs=200, keep_prob=1.0, print_cost=True):
 
     training_data, validation_data, test_data = my_mnist_loader.load_data_wrapper()
 
