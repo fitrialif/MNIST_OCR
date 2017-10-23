@@ -23,7 +23,7 @@ def get_dset(data):
 
 
 def model(layer_dims, learning_rate=2.0, mini_batch_size=64, beta1=0.9, beta2=0.999,
-          epsilon=1e-8, num_epochs=200, keep_prob=1.0, print_cost=True):
+          epsilon=1e-8, num_epochs=200, keep_prob=0.8, print_cost=True):
 
     training_data, validation_data, test_data = my_mnist_loader.load_data_wrapper()
 
@@ -48,14 +48,11 @@ def model(layer_dims, learning_rate=2.0, mini_batch_size=64, beta1=0.9, beta2=0.
             #net.update_parameter_with_adam(grads, v, s, adam_counter, learning_rate, beta1, beta2, epsilon)
             net.update_parameters_with_gd(grads, learning_rate)
 
-        if print_cost and i%10 == 0:
+        if print_cost and i % 10 == 0:
             print("Cost after epoch %i: %f" % (i, cost))
             print("validation set : %d/10000" % predict(c, d, net))
-            #print("train set : %d/10000"%predict(X[:, 0:10000], Y[:, 0:10000], net))
-
-        if print_cost and i % 10 == 0:
             costs.append(cost)
-
+            
     A, B = get_dset(test_data)
     print("test set : %d/10000" % predict(A, B, net))
     print("train set : %d/10000" % predict(X[:, 0:10000], Y[:, 0:10000], net))
@@ -65,11 +62,6 @@ def model(layer_dims, learning_rate=2.0, mini_batch_size=64, beta1=0.9, beta2=0.
     plt.xlabel('epochs (per 10)')
     plt.title("Learning rate = " + str(learning_rate))
     plt.show()
-
-
-
-def param_search(a=1.0,b=0.0001):
-    param_list = np.random.rand(1,10)
-
+    
 
 model([784, 60, 30, 10])
