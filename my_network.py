@@ -64,7 +64,7 @@ class Network(object):
 
     def compute_cost(self, y_hat, y):
         m = y.shape[1]
-        cost = (-1. / m) * np.sum(np.sum(np.multiply(y, np.log(y_hat)) + np.multiply((1 - y), np.log(1 - y_hat))))
+        cost = (-1. / m) * np.sum(np.sum(np.multiply(y, np.log(y_hat)) + np.multiply((1 - y), np.log(1 - y_hat))))  #///nan to num
         np.squeeze(cost)
         return cost
 
